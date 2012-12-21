@@ -42,19 +42,16 @@ public class HammerConfiguration extends ConfigurationHolderConfiguration {
 	public HammerConfiguration(File dataFolder) {
 		super(new YamlConfiguration(new File(dataFolder, "config.yml")));
 	}
-	
+
 	@Override
 	public void load() throws ConfigurationException {
 		super.save();
 		super.load();
 	}
-	
+
 	@Override
 	public void save() throws ConfigurationException {
 		super.save();
 	}
-	
-	
-	
-	
+
 }

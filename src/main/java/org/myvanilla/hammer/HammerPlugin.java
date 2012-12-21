@@ -40,51 +40,49 @@ import org.spout.api.plugin.CommonPlugin;
 import org.spout.vanilla.world.generator.VanillaGenerator;
 import org.spout.vanilla.world.generator.VanillaGenerators;
 
-
 public class HammerPlugin extends CommonPlugin {
 
-    private World newWorld = null;
-    private Converters converter;
-    @Override
-    public void onEnable() {
-    	
-    	//Load the Configuration file
-    	try {
+	private World newWorld = null;
+	private Converters converter;
+
+	@Override
+	public void onEnable() {
+
+		// Load the Configuration file
+		try {
 			new HammerConfiguration(getDataFolder()).load();
 		} catch (ConfigurationException e1) {
 			getLogger().log(Level.SEVERE, "Impossible to load Hammer configuration file!", e1);
 			this.getPluginLoader().disablePlugin(this);
 			return;
 		}
-    	
-    	//Checks in the configuration file if the converter selected exists.
-    	try
-    	{
-    		converter = Converters.valueOf(HammerConfiguration.CONVERTER.getString().toUpperCase());
-    	} catch (IllegalArgumentException e) { 
-    		getLogger().severe("There's no converter with the name: " + HammerConfiguration.CONVERTER.getString() + "! Disabling plugin");
-    		this.getPluginLoader().disablePlugin(this);
-    		return;
-    	}
-    	
-        getLogger().info("Loading Hammer (Map converter to Vanilla). Please wait...");
-        
-        //We load the generator from the configuration file.
-        VanillaGenerator generator = VanillaGenerators.byName(HammerConfiguration.GENERATOR.getString());
-        if (generator == null) {
-            getLogger().severe(HammerConfiguration.GENERATOR.getString() + " Vanilla generator not found! Impossible to continue!");
-            this.getPluginLoader().disablePlugin(this);
-            return;
-        }
-        //We use a UUID to be sure we don't override a folder.
-        newWorld = getEngine().loadWorld("convertWorld" + UUID.randomUUID().toString().replace("-", "").substring(0, 5), generator);
-        
-        
-    }
 
-    @Override
-    public void onDisable() {
-        getLogger().info("Hammer stopped!");
-    }
-    
+		// Checks in the configuration file if the converter selected exists.
+		try {
+			converter = Converters.valueOf(HammerConfiguration.CONVERTER.getString().toUpperCase());
+		} catch (IllegalArgumentException e) {
+			getLogger().severe("There's no converter with the name: " + HammerConfiguration.CONVERTER.getString() + "! Disabling plugin");
+			this.getPluginLoader().disablePlugin(this);
+			return;
+		}
+
+		getLogger().info("Loading Hammer (Map converter to Vanilla). Please wait...");
+
+		// We load the generator from the configuration file.
+		VanillaGenerator generator = VanillaGenerators.byName(HammerConfiguration.GENERATOR.getString());
+		if (generator == null) {
+			getLogger().severe(HammerConfiguration.GENERATOR.getString() + " Vanilla generator not found! Impossible to continue!");
+			this.getPluginLoader().disablePlugin(this);
+			return;
+		}
+		// We use a UUID to be sure we don't override a folder.
+		newWorld = getEngine().loadWorld("convertWorld" + UUID.randomUUID().toString().replace("-", "").substring(0, 5), generator);
+
+	}
+
+	@Override
+	public void onDisable() {
+		getLogger().info("Hammer stopped!");
+	}
+
 }
