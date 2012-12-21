@@ -26,20 +26,29 @@
  */
 package org.myvanilla.hammer;
 
+import java.io.File;
 import java.util.List;
 
-public interface Converter {
+public abstract class Converter {
 
+	protected File folder;
+	
+	public Converter(File folder) throws InstantiationException {
+		if (!folder.isDirectory()) {
+			throw new InstantiationException("The folder given isin't a folder!");
+		}
+		this.folder = folder;
+	}
 	/**
 	 * This function returns the general meta-data of a map (Spawn Point, etc)
 	 * 
 	 * @return the MapMetadata
 	 */
-	MapMetadata getMapMetadata();
+	public abstract MapMetadata getMapMetadata();
 	
 	/**
 	 * Contains a list of all the blocks on the map (May get re-worked if it get's too huge)
 	 * @return A list of all the blocks on the map
 	 */
-	List<ConvertBlock> getBlockList();
+	public abstract List<ConvertBlock> getBlockList();
 }

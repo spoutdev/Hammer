@@ -26,24 +26,43 @@
  */
 package org.myvanilla.hammer.minecraft;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.myvanilla.hammer.ConvertBlock;
 import org.myvanilla.hammer.Converter;
 import org.myvanilla.hammer.MapMetadata;
 
-public class MinecraftConverter implements Converter {
+public class MinecraftConverter extends Converter {
+
+	private MinecraftMapMetadata metaData;
+	private File worldInformation;
+
+	public MinecraftConverter(File folder) throws InstantiationException {
+		super(folder);
+		worldInformation = new File(this.folder, "level.dat");
+		if (!worldInformation.exists() || !worldInformation.canRead() || !worldInformation.isFile()) {
+			throw new InstantiationException("Impossible to read the level.dat file. Is it a minecraft world?");
+		}
+	}
 
 	@Override
 	public MapMetadata getMapMetadata() {
-		// TODO Auto-generated method stub
-		return null;
+		if (metaData == null) {
+
+		}
+		return metaData;
 	}
 
 	@Override
 	public List<ConvertBlock> getBlockList() {
-		// TODO Auto-generated method stub
-		return null;
+		List<ConvertBlock> blockList = new ArrayList<ConvertBlock>();
+		if (metaData == null) {
+			throw new IllegalArgumentException("Metadata isin't loaded!");
+		}
+		// TODO: Find how we read chunks.
+		return blockList;
 	}
 
 }

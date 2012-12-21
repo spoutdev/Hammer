@@ -26,10 +26,12 @@
  */
 package org.myvanilla.hammer;
 
+import java.io.File;
 import java.util.UUID;
 import java.util.logging.Level;
 
 import org.myvanilla.hammer.configuration.HammerConfiguration;
+import org.myvanilla.hammer.minecraft.MinecraftConverter;
 import org.spout.api.exception.ConfigurationException;
 import org.spout.api.geo.World;
 import org.spout.api.plugin.CommonPlugin;
@@ -39,7 +41,8 @@ import org.spout.vanilla.world.generator.VanillaGenerators;
 public class HammerPlugin extends CommonPlugin {
 
 	private World newWorld = null;
-	private Converters converter;
+	private Converter converter;
+	private Converters converterType;
 
 	@Override
 	public void onEnable() {
@@ -55,7 +58,7 @@ public class HammerPlugin extends CommonPlugin {
 
 		// Checks in the configuration file if the converter selected exists.
 		try {
-			converter = Converters.valueOf(HammerConfiguration.CONVERTER.getString().toUpperCase());
+			converterType = Converters.valueOf(HammerConfiguration.CONVERTER.getString().toUpperCase());
 		} catch (IllegalArgumentException e) {
 			getLogger().severe("There's no converter with the name: " + HammerConfiguration.CONVERTER.getString() + "! Disabling plugin");
 			this.getPluginLoader().disablePlugin(this);
@@ -71,7 +74,19 @@ public class HammerPlugin extends CommonPlugin {
 			this.getPluginLoader().disablePlugin(this);
 			return;
 		}
-		// We use a UUID to be sure we don't override a folder.
+
+		try {
+			if (converterType.equals(Converters.MINECRAFT)) {
+				converter = new MinecraftConverter(new File(getDataFolder(), HammerConfiguration.FOLDERNAME.getString()));
+			}
+		} catch (InstantiationException e) {
+			getLogger().log(Level.SEVERE, "Impossible to load the converter!", e);
+			this.getPluginLoader().disablePlugin(this);
+			return;
+		}
+
+		MapMetadata metadata = converter.getMapMetadata();
+		// We use a random UUID to be sure we don't override a folder.
 		newWorld = getEngine().loadWorld("convertWorld" + UUID.randomUUID().toString().replace("-", "").substring(0, 5), generator);
 
 	}
