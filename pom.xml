@@ -16,6 +16,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<currentYear>2012</currentYear>
 		<spoutVersion>dev-SNAPSHOT</spoutVersion>
+                <vanillaVersion>1.4.5-SNAPSHOT</vanillaVersion>
 		<buildNumber>0</buildNumber>
 	</properties>
 
@@ -95,6 +96,12 @@
 			<groupId>org.spout</groupId>
 			<artifactId>spoutapi</artifactId>
 			<version>${spoutVersion}</version>
+			<scope>provided</scope>
+		</dependency>
+                <dependency>
+			<groupId>org.spout</groupId>
+			<artifactId>vanilla</artifactId>
+			<version>${vanillaVersion}</version>
 			<scope>provided</scope>
 		</dependency>
 		<!-- Testing only -->

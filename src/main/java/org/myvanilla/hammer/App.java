@@ -54,7 +54,7 @@ import org.spout.nbt.stream.NBTOutputStream;
 import org.myvanilla.hammer.util.FileFilter;
 
 public class App {
-	private static World world;
+	private static MinecraftWorld world;
 	private static File spoutFolder;
 
 	public static void main(String[] args) {
@@ -98,7 +98,7 @@ public class App {
 				CompoundMap dataTag = (CompoundMap) level.get("Data").getValue();
 				if (((IntTag) dataTag.get("version")).getValue().equals(19133)) {
 					sendUpdate();
-					world = new World(worldFolder, ((StringTag) dataTag.get("LevelName")).getValue(), ((StringTag) dataTag.get("generatorName")).getValue(), ((IntTag)dataTag.get("GameType")).getValue(), ((LongTag) dataTag.get("RandomSeed")).getValue(), ((IntTag) dataTag.get("SpawnX")).getValue(), ((IntTag) dataTag.get("SpawnY")).getValue(), ((IntTag) dataTag.get("SpawnZ")).getValue());
+					world = new MinecraftWorld(worldFolder, ((StringTag) dataTag.get("LevelName")).getValue(), ((StringTag) dataTag.get("generatorName")).getValue(), ((IntTag)dataTag.get("GameType")).getValue(), ((LongTag) dataTag.get("RandomSeed")).getValue(), ((IntTag) dataTag.get("SpawnX")).getValue(), ((IntTag) dataTag.get("SpawnY")).getValue(), ((IntTag) dataTag.get("SpawnZ")).getValue());
 					if (world.isValid()) {
 						sendUpdate();
 						result = true;

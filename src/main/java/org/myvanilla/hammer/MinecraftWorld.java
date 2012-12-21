@@ -28,13 +28,13 @@ package org.myvanilla.hammer;
 
 import java.io.File;
 
-public class World {
+public class MinecraftWorld {
 	private int spawnX, spawnY, spawnZ, gamemode;
 	private String name, generator;
 	private long seed = 0;
 	private File worldFolder;
 
-	public World (File worldFolder, String name, String generator, int gamemode, long seed, int spawnX, int spawnY, int spawnZ) {
+	public MinecraftWorld (File worldFolder, String name, String generator, int gamemode, long seed, int spawnX, int spawnY, int spawnZ) {
 		this.worldFolder = worldFolder;
 		this.spawnX = spawnX;
 		this.spawnY = spawnY;
