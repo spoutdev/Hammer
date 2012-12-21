@@ -35,9 +35,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
-import org.spout.api.datatable.DataMap;
-import org.spout.api.datatable.GenericDatatableMap;
-
 import org.spout.nbt.ByteArrayTag;
 import org.spout.nbt.ByteTag;
 import org.spout.nbt.CompoundMap;
@@ -51,6 +48,7 @@ import org.spout.nbt.StringTag;
 import org.spout.nbt.stream.NBTInputStream;
 import org.spout.nbt.stream.NBTOutputStream;
 
+import org.myvanilla.hammer.minecraft.MinecraftWorld;
 import org.myvanilla.hammer.util.FileFilter;
 
 public class App {
@@ -129,12 +127,12 @@ public class App {
 		worldTags.put(new LongTag("UUID_lsb", new Random().nextLong()));
 		worldTags.put(new LongTag("UUID_msb", new Random().nextLong()));
 
-		DataMap map = new DataMap(new GenericDatatableMap());
-		map.put("weather", "CLEAR");
-		map.put("game_mode", world.getGamemode());
-		map.put("difficulty", "NORMAL");
-		map.put("dimension", "NORMAL");
-		worldTags.put(new ByteArrayTag("extra_data", map.getRawMap().compress()));
+		//DataMap map = new DataMap(new GenericDatatableMap());
+		//map.put("weather", "CLEAR");
+		//map.put("game_mode", world.getGamemode());
+		//map.put("difficulty", "NORMAL");
+		//map.put("dimension", "NORMAL");
+		//worldTags.put(new ByteArrayTag("extra_data", map.getRawMap().compress()));
 		worldTags.put(new LongTag("age", 0));
 
 		// World version 2

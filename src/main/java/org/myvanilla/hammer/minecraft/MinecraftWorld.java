@@ -24,7 +24,7 @@
  * License and see <http://spout.in/licensev1> for the full license, including
  * the MIT license.
  */
-package org.myvanilla.hammer;
+package org.myvanilla.hammer.minecraft;
 
 import java.io.File;
 

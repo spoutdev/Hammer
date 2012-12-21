@@ -9,14 +9,15 @@
 	<version>1.4.5-SNAPSHOT</version>
 	<url>http://www.myvanilla.org</url>
 	<inceptionYear>2012</inceptionYear>
-	<description></description>
+	<description>World converter for the Vanilla plugin</description>
 
 	<!-- Build properties -->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<currentYear>2012</currentYear>
 		<spoutVersion>dev-SNAPSHOT</spoutVersion>
-                <vanillaVersion>1.4.5-SNAPSHOT</vanillaVersion>
+        <vanillaVersion>1.4.5-SNAPSHOT</vanillaVersion>
+        <mainClass>org.myvanilla.hammer.HammerPlugin</mainClass>
 		<buildNumber>0</buildNumber>
 	</properties>
 
@@ -126,6 +127,14 @@
 				<directory>${basedir}</directory>
 				<includes>
 					<include>LICENSE.txt</include>
+				</includes>
+			</resource>
+			<resource>
+				<targetPath>.</targetPath>
+				<filtering>true</filtering>
+				<directory>${basedir}/src/main/resources</directory>
+				<includes>
+					<include>*.yml</include>
 				</includes>
 			</resource>
 		</resources>
