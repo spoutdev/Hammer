@@ -36,12 +36,14 @@ import java.util.List;
 import org.myvanilla.hammer.ConvertBlock;
 import org.myvanilla.hammer.Converter;
 import org.myvanilla.hammer.MapMetadata;
+import org.spout.api.util.sanitation.SafeCast;
 import org.spout.nbt.CompoundMap;
 import org.spout.nbt.CompoundTag;
 import org.spout.nbt.IntTag;
 import org.spout.nbt.StringTag;
 import org.spout.nbt.Tag;
 import org.spout.nbt.stream.NBTInputStream;
+import org.spout.nbt.util.NBTMapper;
 
 public class MinecraftConverter extends Converter {
 
@@ -71,9 +73,13 @@ public class MinecraftConverter extends Converter {
 			HashMap<String, Tag> level = new HashMap<String, Tag>();
 			level.putAll(data.getValue());
 			if (level.containsKey("Data")) {
-				CompoundMap dataTag = (CompoundMap) level.get("Data").getValue();
-				if (((IntTag) dataTag.get("version")).getValue().equals(19133)) {
-					metaData = new MinecraftMapMetadata(((IntTag)dataTag.get("SpawnX")).getValue().intValue(), ((IntTag)dataTag.get("SpawnY")).getValue().intValue(), ((IntTag)dataTag.get("SpawnZ")).getValue().intValue(), ((StringTag) dataTag.get("generatorName")).getValue());
+				
+				CompoundMap dataTag = (CompoundMap) SafeCast.toGeneric(CompoundMap.class,NBTMapper.toTagValue(level.get("Data")), null);
+				if (dataTag != null) {
+					int mapVersion = SafeCast.toInt(NBTMapper.toTagValue(dataTag.get("version")), 0);
+					if (mapVersion == 19133) {
+						metaData = new MinecraftMapMetadata(SafeCast.toInt(NBTMapper.toTagValue(dataTag.get("SpawnX")),0), SafeCast.toInt(NBTMapper.toTagValue(dataTag.get("SpawnY")),0), SafeCast.toInt(NBTMapper.toTagValue(dataTag.get("SpawnZ")),0), SafeCast.toString(NBTMapper.toTagValue(dataTag.get("generatorName")),""));
+					}
 				}
 			}
 		}
