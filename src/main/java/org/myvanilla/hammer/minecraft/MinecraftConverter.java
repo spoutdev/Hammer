@@ -27,12 +27,21 @@
 package org.myvanilla.hammer.minecraft;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.myvanilla.hammer.ConvertBlock;
 import org.myvanilla.hammer.Converter;
 import org.myvanilla.hammer.MapMetadata;
+import org.spout.nbt.CompoundMap;
+import org.spout.nbt.CompoundTag;
+import org.spout.nbt.IntTag;
+import org.spout.nbt.StringTag;
+import org.spout.nbt.Tag;
+import org.spout.nbt.stream.NBTInputStream;
 
 public class MinecraftConverter extends Converter {
 
@@ -50,7 +59,23 @@ public class MinecraftConverter extends Converter {
 	@Override
 	public MapMetadata getMapMetadata() {
 		if (metaData == null) {
-
+			CompoundTag data = null;
+			try {
+				NBTInputStream in = new NBTInputStream(new FileInputStream(worldInformation));
+				data = (CompoundTag) in.readTag();
+				in.close();
+			} catch (IOException e) {
+				// TODO: Auto-generated catch block
+				e.printStackTrace();
+			}
+			HashMap<String, Tag> level = new HashMap<String, Tag>();
+			level.putAll(data.getValue());
+			if (level.containsKey("Data")) {
+				CompoundMap dataTag = (CompoundMap) level.get("Data").getValue();
+				if (((IntTag) dataTag.get("version")).getValue().equals(19133)) {
+					metaData = new MinecraftMapMetadata(((IntTag)dataTag.get("SpawnX")).getValue().intValue(), ((IntTag)dataTag.get("SpawnY")).getValue().intValue(), ((IntTag)dataTag.get("SpawnZ")).getValue().intValue(), ((StringTag) dataTag.get("generatorName")).getValue());
+				}
+			}
 		}
 		return metaData;
 	}
