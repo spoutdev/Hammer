@@ -1,7 +1,7 @@
 /*
  * This file is part of Hammer.
  *
- * Copyright (c) 2012-2012, Spout LLC <http://www.spout.org/>
+ * Copyright (c) 2012-2013, Spout LLC <http://www.spout.org/>
  * Hammer is licensed under the Spout License Version 1.
  *
  * Hammer is free software: you can redistribute it and/or modify it under
