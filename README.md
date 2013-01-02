@@ -11,7 +11,8 @@ Who is VanillaDev?
 VanillaDev is the team behind the Vanilla and BukkitBridge projects.  
 [![Zidane](https://secure.gravatar.com/avatar/3b8d6171c3f15daf35328a4f04c83de9?d=mm&r=pg&s=48)](http://forums.spout.org/members/zidane.7/) [![ZNickq](https://secure.gravatar.com/avatar/2d9c36328b81d872ba0c5b9cb82bbfe8?d=mm&r=pg&s=48)](http://forums.spout.org/members/znickq.72/) [![Windwaker](https://secure.gravatar.com/avatar/942913bba29c93344d8a2e4da56c6bf1?d=mm&r=pg&s=48)](http://forums.spout.org/members/windwaker.47/) [![bergerkiller](https://secure.gravatar.com/avatar/231ba19298225157537674cbeb7a9f7f?s=mm&r=pg&s=48)](http://forums.spout.org/members/bergerkiller.3753/) [![DDoSQc](https://secure.gravatar.com/avatar/ec0cc434d9c9b34670d4c8845fe6bebc?s=mm&r=pg&s=48)](http://forums.spout.org/members/ddos.5524/) [![Pamelloes](https://secure.gravatar.com/avatar/a48c6394ae3408c5da63b4a5fc2ad3c6?s=mm&r=pg&s=48)](http://forums.spout.org/members/pamelloes.38/) 
 
-Hammer is mainly developed by :
+Hammer is developed by:
+
 [![Greatman](https://secure.gravatar.com/avatar/9f5dab0846895bfb4308393bd2aac4c9?d=mm&r=pg&s=48)](http://www.spout.org/members/greatman.101/)
 
 Visit our [website][Website] or get support on our [forums][Forums].  
@@ -23,7 +24,6 @@ Source
 ------
 The latest and greatest source can be found on [GitHub].  
 Download the latest builds from [Jenkins].  [![Build Status](http://build.spout.org/job/Hammer/badge/icon)][Jenkins]  
-View the latest [Javadoc].
 
 License
 -------
