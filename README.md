@@ -1,6 +1,4 @@
-[![Vanilla][Project Logo]][Website]
-
-What is Vanilla?
+What is Hammer?
 ----------------
 Hammer is a plugin for the Spout platform that provides world conversion to Spout/Vanilla format.
 
