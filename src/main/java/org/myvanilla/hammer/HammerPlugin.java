@@ -56,7 +56,7 @@ public class HammerPlugin extends CommonPlugin {
 			return;
 		}
 
-		// Checks in the configuration file if the converter selected exists.
+		/*// Checks in the configuration file if the converter selected exists.
 		try {
 			converterType = Converters.valueOf(HammerConfiguration.CONVERTER.getString().toUpperCase());
 		} catch (IllegalArgumentException e) {
@@ -88,7 +88,7 @@ public class HammerPlugin extends CommonPlugin {
 		MapMetadata metadata = converter.getMapMetadata();
 		// We use a random UUID to be sure we don't override a folder.
 		newWorld = getEngine().loadWorld("convertWorld" + UUID.randomUUID().toString().replace("-", "").substring(0, 5), generator);
-
+		*/
 	}
 
 	@Override
