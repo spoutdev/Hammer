@@ -26,19 +26,13 @@
  */
 package org.myvanilla.hammer.minecraft;
 
-import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.zip.GZIPInputStream;
-import java.util.zip.InflaterInputStream;
 
 import org.myvanilla.hammer.ConvertBlock;
 import org.myvanilla.hammer.Converter;
@@ -49,8 +43,6 @@ import org.myvanilla.hammer.minecraft.com.mojang.nbt.NbtIo;
 import org.myvanilla.hammer.minecraft.com.mojang.nbt.Tag;
 import org.myvanilla.hammer.util.FileFilter;
 import org.spout.api.util.sanitation.SafeCast;
-import org.spout.nbt.stream.NBTInputStream;
-import org.spout.nbt.util.NBTMapper;
 
 
 public class MinecraftConverter extends Converter {

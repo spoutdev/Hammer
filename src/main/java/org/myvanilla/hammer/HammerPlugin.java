@@ -37,9 +37,9 @@ import org.spout.api.exception.ConfigurationException;
 import org.spout.api.geo.World;
 import org.spout.api.material.BlockMaterial;
 import org.spout.api.plugin.CommonPlugin;
-import org.spout.vanilla.material.VanillaMaterials;
-import org.spout.vanilla.world.generator.VanillaGenerator;
-import org.spout.vanilla.world.generator.VanillaGenerators;
+import org.spout.vanilla.plugin.material.VanillaMaterials;
+import org.spout.vanilla.plugin.world.generator.VanillaGenerator;
+import org.spout.vanilla.plugin.world.generator.VanillaGenerators;
 
 public class HammerPlugin extends CommonPlugin {
 
