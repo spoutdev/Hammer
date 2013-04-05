@@ -1,4 +1,4 @@
-package org.myvanilla.hammer.minecraft.com.mojang.nbt;
+package org.myvanilla.hammer.com.mojang.nbt;
 
 /**
  * Copyright Mojang AB.
@@ -8,28 +8,28 @@ package org.myvanilla.hammer.minecraft.com.mojang.nbt;
 
 import java.io.*;
 
-public class FloatTag extends Tag {
-    public float data;
+public class ByteTag extends Tag {
+    public byte data;
 
-    public FloatTag(String name) {
+    public ByteTag(String name) {
         super(name);
     }
 
-    public FloatTag(String name, float data) {
+    public ByteTag(String name, byte data) {
         super(name);
         this.data = data;
     }
 
     void write(DataOutput dos) throws IOException {
-        dos.writeFloat(data);
+        dos.writeByte(data);
     }
 
     void load(DataInput dis) throws IOException {
-        data = dis.readFloat();
+        data = dis.readByte();
     }
 
     public byte getId() {
-        return TAG_Float;
+        return TAG_Byte;
     }
 
     public String toString() {
@@ -37,17 +37,16 @@ public class FloatTag extends Tag {
     }
 
     @Override
-    public Tag copy() {
-        return new FloatTag(getName(), data);
-    }
-
-    @Override
     public boolean equals(Object obj) {
         if (super.equals(obj)) {
-            FloatTag o = (FloatTag) obj;
+            ByteTag o = (ByteTag) obj;
             return data == o.data;
         }
         return false;
     }
 
+    @Override
+    public Tag copy() {
+        return new ByteTag(getName(), data);
+    }
 }

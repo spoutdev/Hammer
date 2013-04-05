@@ -35,7 +35,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
-import org.spout.nbt.ByteArrayTag;
+import org.myvanilla.hammer.minecraft.MinecraftWorld;
+import org.myvanilla.hammer.util.FileFilter;
+
 import org.spout.nbt.ByteTag;
 import org.spout.nbt.CompoundMap;
 import org.spout.nbt.CompoundTag;
@@ -43,13 +45,10 @@ import org.spout.nbt.FloatTag;
 import org.spout.nbt.IntTag;
 import org.spout.nbt.ListTag;
 import org.spout.nbt.LongTag;
-import org.spout.nbt.Tag;
 import org.spout.nbt.StringTag;
+import org.spout.nbt.Tag;
 import org.spout.nbt.stream.NBTInputStream;
 import org.spout.nbt.stream.NBTOutputStream;
-
-import org.myvanilla.hammer.minecraft.MinecraftWorld;
-import org.myvanilla.hammer.util.FileFilter;
 
 public class App {
 	private static MinecraftWorld world;
@@ -96,7 +95,7 @@ public class App {
 				CompoundMap dataTag = (CompoundMap) level.get("Data").getValue();
 				if (((IntTag) dataTag.get("version")).getValue().equals(19133)) {
 					sendUpdate();
-					world = new MinecraftWorld(worldFolder, ((StringTag) dataTag.get("LevelName")).getValue(), ((StringTag) dataTag.get("generatorName")).getValue(), ((IntTag)dataTag.get("GameType")).getValue(), ((LongTag) dataTag.get("RandomSeed")).getValue(), ((IntTag) dataTag.get("SpawnX")).getValue(), ((IntTag) dataTag.get("SpawnY")).getValue(), ((IntTag) dataTag.get("SpawnZ")).getValue());
+					world = new MinecraftWorld(worldFolder, ((StringTag) dataTag.get("LevelName")).getValue(), ((StringTag) dataTag.get("generatorName")).getValue(), ((IntTag) dataTag.get("GameType")).getValue(), ((LongTag) dataTag.get("RandomSeed")).getValue(), ((IntTag) dataTag.get("SpawnX")).getValue(), ((IntTag) dataTag.get("SpawnY")).getValue(), ((IntTag) dataTag.get("SpawnZ")).getValue());
 					if (world.isValid()) {
 						sendUpdate();
 						result = true;
@@ -121,9 +120,9 @@ public class App {
 		CompoundMap worldTags = new CompoundMap();
 
 		// World version 1
-		worldTags.put(new ByteTag("version", (byte)2));
+		worldTags.put(new ByteTag("version", (byte) 2));
 		worldTags.put(new LongTag("seed", world.getSeed()));
-		worldTags.put(new StringTag("generator","VanillaNormal"));
+		worldTags.put(new StringTag("generator", "VanillaNormal"));
 		worldTags.put(new LongTag("UUID_lsb", new Random().nextLong()));
 		worldTags.put(new LongTag("UUID_msb", new Random().nextLong()));
 

@@ -32,7 +32,7 @@ import java.io.FilenameFilter;
 public class FileFilter implements FilenameFilter {
 	protected String pattern;
 
-	public FileFilter (String str) {
+	public FileFilter(String str) {
 		pattern = str;
 	}
 

@@ -1,4 +1,4 @@
-package org.myvanilla.hammer.minecraft.com.mojang.nbt;
+package org.myvanilla.hammer.com.mojang.nbt;
 
 /**
  * Copyright Mojang AB.

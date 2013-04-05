@@ -1,4 +1,4 @@
-package org.myvanilla.hammer.minecraft.com.mojang.nbt;
+package org.myvanilla.hammer.com.mojang.nbt;
 
 /**
  * Copyright Mojang AB.
@@ -8,28 +8,28 @@ package org.myvanilla.hammer.minecraft.com.mojang.nbt;
 
 import java.io.*;
 
-public class IntTag extends Tag {
-    public int data;
+public class ShortTag extends Tag {
+    public short data;
 
-    public IntTag(String name) {
+    public ShortTag(String name) {
         super(name);
     }
 
-    public IntTag(String name, int data) {
+    public ShortTag(String name, short data) {
         super(name);
         this.data = data;
     }
 
     void write(DataOutput dos) throws IOException {
-        dos.writeInt(data);
+        dos.writeShort(data);
     }
 
     void load(DataInput dis) throws IOException {
-        data = dis.readInt();
+        data = dis.readShort();
     }
 
     public byte getId() {
-        return TAG_Int;
+        return TAG_Short;
     }
 
     public String toString() {
@@ -38,13 +38,13 @@ public class IntTag extends Tag {
 
     @Override
     public Tag copy() {
-        return new IntTag(getName(), data);
+        return new ShortTag(getName(), data);
     }
 
     @Override
     public boolean equals(Object obj) {
         if (super.equals(obj)) {
-            IntTag o = (IntTag) obj;
+            ShortTag o = (ShortTag) obj;
             return data == o.data;
         }
         return false;

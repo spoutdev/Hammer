@@ -1,4 +1,4 @@
-package org.myvanilla.hammer.minecraft.com.mojang.nbt;
+package org.myvanilla.hammer.com.mojang.nbt;
 
 /**
  * Copyright Mojang AB.
@@ -38,7 +38,7 @@ public class ListTag<T extends Tag> extends Tag {
 
         list = new ArrayList<T>();
         for (int i = 0; i < size; i++) {
-            Tag tag = Tag.newTag(type, null);
+            Tag tag = newTag(type, null);
             tag.load(dis);
             list.add((T) tag);
         }
@@ -49,7 +49,7 @@ public class ListTag<T extends Tag> extends Tag {
     }
 
     public String toString() {
-        return "" + list.size() + " entries of type " + Tag.getTagName(type);
+        return "" + list.size() + " entries of type " + getTagName(type);
     }
 
     public void print(String prefix, PrintStream out) {

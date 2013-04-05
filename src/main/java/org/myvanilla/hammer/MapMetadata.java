@@ -27,7 +27,6 @@
 package org.myvanilla.hammer;
 
 public class MapMetadata {
-
 	private int spawnX, spawnY, spawnZ;
 	private String generatorName;
 

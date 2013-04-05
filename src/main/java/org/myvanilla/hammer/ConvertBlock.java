@@ -28,10 +28,8 @@ package org.myvanilla.hammer;
 
 /**
  * This class contains information about a block.
- * 
  */
 public class ConvertBlock {
-
 	private int x, y, z;
 	private byte id, metadata;
 

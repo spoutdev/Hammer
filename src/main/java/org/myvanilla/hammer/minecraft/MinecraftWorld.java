@@ -34,7 +34,7 @@ public class MinecraftWorld {
 	private long seed = 0;
 	private File worldFolder;
 
-	public MinecraftWorld (File worldFolder, String name, String generator, int gamemode, long seed, int spawnX, int spawnY, int spawnZ) {
+	public MinecraftWorld(File worldFolder, String name, String generator, int gamemode, long seed, int spawnX, int spawnY, int spawnZ) {
 		this.worldFolder = worldFolder;
 		this.spawnX = spawnX;
 		this.spawnY = spawnY;

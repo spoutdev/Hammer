@@ -16,7 +16,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<currentYear>2013</currentYear>
 		<spoutVersion>dev-SNAPSHOT</spoutVersion>
-        <vanillaVersion>1.4.6-SNAPSHOT</vanillaVersion>
+        <vanillaVersion>1.5.1-SNAPSHOT</vanillaVersion>
         <mainClass>org.myvanilla.hammer.HammerPlugin</mainClass>
 		<buildNumber>0</buildNumber>
 	</properties>

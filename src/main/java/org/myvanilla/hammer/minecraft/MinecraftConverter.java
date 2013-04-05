@@ -35,23 +35,21 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.myvanilla.hammer.ConvertBlock;
-import org.myvanilla.hammer.Converter;
 import org.myvanilla.hammer.MapMetadata;
-import org.myvanilla.hammer.minecraft.com.mojang.nbt.CompoundTag;
-import org.myvanilla.hammer.minecraft.com.mojang.nbt.ListTag;
-import org.myvanilla.hammer.minecraft.com.mojang.nbt.NbtIo;
-import org.myvanilla.hammer.minecraft.com.mojang.nbt.Tag;
+import org.myvanilla.hammer.com.mojang.nbt.CompoundTag;
+import org.myvanilla.hammer.com.mojang.nbt.ListTag;
+import org.myvanilla.hammer.com.mojang.nbt.NbtIo;
+import org.myvanilla.hammer.com.mojang.nbt.Tag;
 import org.myvanilla.hammer.util.FileFilter;
+
 import org.spout.api.util.sanitation.SafeCast;
 
-
 public class MinecraftConverter extends Converter {
-
 	private MinecraftMapMetadata metaData;
 	private File worldInformation;
 	private static final int VERSION_GZIP = 1;
 	private static final int VERSION_DEFLATE = 2;
-    
+
 	public MinecraftConverter(File folder) throws InstantiationException {
 		super(folder);
 		worldInformation = new File(this.folder, "level.dat");
@@ -70,7 +68,7 @@ public class MinecraftConverter extends Converter {
 				// TODO: Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 			if (data.contains("Data")) {
 				CompoundTag dataTag = data.getCompound("Data");
 				if (dataTag != null) {
@@ -106,7 +104,7 @@ public class MinecraftConverter extends Converter {
 			chunk = new HashMap<String, Tag>();
 			try {
 				RegionFile region = new RegionFile(regionFile);
-				
+
 				// We open the file.
 				/*RandomAccessFile file = new RandomAccessFile(regionFile, "r");
 				int offset = getOffset(x, z);
@@ -134,18 +132,16 @@ public class MinecraftConverter extends Converter {
 				}*/
 				System.out.println(regionFile.getName());
 				for (int x = 0; x < 32; x++) {
-	                for (int z = 0; z < 32; z++) {
-	                	if (region.hasChunk(x, z)) {
-	                		in = region.getChunkDataInputStream(x, z);
-	                		break;
-	                	}
-	                }
+					for (int z = 0; z < 32; z++) {
+						if (region.hasChunk(x, z)) {
+							in = region.getChunkDataInputStream(x, z);
+							break;
+						}
+					}
 				}
 				//in = new NBTInputStream(region.getChunkDataInputStream(0,0));
 				tag = (CompoundTag) NbtIo.read(in);
 				in.close();
-				
-					
 
 				if (tag.contains("Level")) {
 					//Yay! file looks valid. Let's continue.
@@ -159,12 +155,12 @@ public class MinecraftConverter extends Converter {
 						byte[] blocks = SafeCast.toByteArray(compoundTag.getByteArray("Blocks"), new byte[0]);
 						for (int yBase = 0; yBase < (128 / 16); yBase++) {
 							for (int x = 0; x < 16; x++) {
-				                for (int y = 0; y < 16; y++) {
-				                    for (int z = 0; z < 16; z++) {
-				                        byte block = blocks[(y << 8) | (z << 4) | x];
-				                        blockList.add(new ConvertBlock(xPos + x,y * 16,zPos + z ,block, (byte) 0));
-				                    }
-				                }
+								for (int y = 0; y < 16; y++) {
+									for (int z = 0; z < 16; z++) {
+										byte block = blocks[(y << 8) | (z << 4) | x];
+										blockList.add(new ConvertBlock(xPos + x, y * 16, zPos + z, block, (byte) 0));
+									}
+								}
 							}
 						}
 					}
@@ -180,5 +176,4 @@ public class MinecraftConverter extends Converter {
 		}
 		return blockList;
 	}
-
 }

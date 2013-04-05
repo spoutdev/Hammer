@@ -26,30 +26,37 @@
  */
 package org.myvanilla.hammer;
 
-import java.io.File;
-import java.util.List;
-import java.util.UUID;
-import java.util.logging.Level;
+import org.myvanilla.hammer.converter.ConverterException;
+import org.myvanilla.hammer.converter.MinecraftToSpoutConverter;
 
-import org.myvanilla.hammer.configuration.HammerConfiguration;
-import org.myvanilla.hammer.minecraft.MinecraftConverter;
-import org.spout.api.exception.ConfigurationException;
+import org.spout.api.command.CommandRegistrationsFactory;
+import org.spout.api.command.RootCommand;
+import org.spout.api.command.annotated.AnnotatedCommandRegistrationFactory;
+import org.spout.api.command.annotated.SimpleAnnotatedCommandExecutorFactory;
+import org.spout.api.command.annotated.SimpleInjector;
 import org.spout.api.geo.World;
-import org.spout.api.material.BlockMaterial;
 import org.spout.api.plugin.CommonPlugin;
-import org.spout.vanilla.plugin.material.VanillaMaterials;
-import org.spout.vanilla.plugin.world.generator.VanillaGenerator;
-import org.spout.vanilla.plugin.world.generator.VanillaGenerators;
 
 public class HammerPlugin extends CommonPlugin {
-
+	private static HammerPlugin instance;
+	private MinecraftToSpoutConverter converter;
 	private World newWorld = null;
-	private Converter converter;
-	private Converters converterType;
+	//private Converter converter;
+	//private Converters converterType;
 
 	@Override
 	public void onEnable() {
+		instance = this;
+		//Commands
+		final CommandRegistrationsFactory<Class<?>> commandRegFactory = new AnnotatedCommandRegistrationFactory(getEngine(), new SimpleInjector(this), new SimpleAnnotatedCommandExecutorFactory());
+		final RootCommand root = getEngine().getRootCommand();
+		root.addSubCommands(this, HammerCommands.class, commandRegFactory);
 
+		getLogger().info("Loaded!");
+	}
+	/*@Override
+	public void onEnable() {
+		instance = this;
 		// Load the Configuration file
 		try {
 			new HammerConfiguration(getDataFolder()).load();
@@ -116,11 +123,22 @@ public class HammerPlugin extends CommonPlugin {
 			getLogger().warning("Hammer converter not started. Please configure it through the config.yml file!");
 		}
 		
-	}
+	}*/
 
 	@Override
 	public void onDisable() {
 		getLogger().info("Hammer stopped!");
 	}
 
+	public static HammerPlugin getInstance() {
+		return instance;
+	}
+
+	public void initializeConverter(String worldFolder) throws ConverterException {
+		converter = new MinecraftToSpoutConverter(worldFolder);
+	}
+
+	public MinecraftToSpoutConverter getConverter() {
+		return converter;
+	}
 }
