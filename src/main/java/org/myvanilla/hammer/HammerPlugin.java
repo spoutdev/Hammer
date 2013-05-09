@@ -37,6 +37,8 @@ import org.spout.api.command.annotated.SimpleInjector;
 import org.spout.api.geo.World;
 import org.spout.api.plugin.CommonPlugin;
 
+import org.spout.vanilla.world.generator.VanillaGenerators;
+
 public class HammerPlugin extends CommonPlugin {
 	private static HammerPlugin instance;
 	private MinecraftToSpoutConverter converter;
@@ -135,7 +137,7 @@ public class HammerPlugin extends CommonPlugin {
 	}
 
 	public void initializeConverter(String worldFolder) throws ConverterException {
-		converter = new MinecraftToSpoutConverter(worldFolder);
+		converter = new MinecraftToSpoutConverter(worldFolder, VanillaGenerators.NORMAL);
 	}
 
 	public MinecraftToSpoutConverter getConverter() {

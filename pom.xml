@@ -170,7 +170,7 @@
 								<include>src/test/java/**</include>
 							</includes>
 							<excludes>
-								<exclude>src/main/java/org/myvanilla/hammer/minecraft/com/mojang/**</exclude>
+								<exclude>src/main/java/org/myvanilla/hammer/com/mojang/**</exclude>
 							</excludes>
 						</configuration>
 						<phase>clean</phase>
