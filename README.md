@@ -11,7 +11,7 @@ VanillaDev is the team behind the Vanilla and BukkitBridge projects.
 
 Hammer is developed by:
 
-[![Greatman](https://secure.gravatar.com/avatar/9f5dab0846895bfb4308393bd2aac4c9?d=mm&r=pg&s=48)](http://www.spout.org/members/greatman.101/)
+[![Greatman](https://secure.gravatar.com/avatar/9f5dab0846895bfb4308393bd2aac4c9?d=mm&r=pg&s=48)](http://forums.spout.org/members/greatman.101/)
 
 Visit our [website][Website] or get support on our [forums][Forums].  
 Track and submit issues and bugs on our [issue tracker][Issues].
